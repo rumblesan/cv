@@ -9,6 +9,9 @@
 % Original header:
 % Copyright (C) 2010 by Trey Hunner
 %
+% Modified by:
+% Guy John (http://rumblesan.com)
+%
 % Copying and distribution of this file, with or without modification,
 % are permitted in any medium without royalty provided the copyright
 % notice and this notice are preserved. This file is offered as-is,
