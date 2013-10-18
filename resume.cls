@@ -47,18 +47,19 @@
   \@ifundefined{@addresstwo}{
     \def \@addresstwo {#1}
   }{
-  \@ifundefined{@addressthree}{
-  \def \@addressthree {#1}
-  }{
-     \def \@addressone {#1}
-  }}
+    \@ifundefined{@addressthree}{
+      \def \@addressthree {#1}
+    }{
+      \def \@addressone {#1}
+    }
+  }
 }
 
 % \printaddress is used to style an address line (given as input)
 \def \printaddress #1{
   \begingroup
-    \def \\ {\addressSep\ }
-    \centerline{#1}
+  \def \\ {\addressSep\ }
+  \centerline{#1}
   \endgroup
   \par
   \addressskip
@@ -67,8 +68,8 @@
 % \printname is used to print the name as a page header
 \def \printname {
   \begingroup
-    \hfil{\MakeUppercase{\namesize\bf \@name}}\hfil
-    \nameskip\break
+  \hfil{\MakeUppercase{\namesize\bf \@name}}\hfil
+  \nameskip\break
   \endgroup
 }
 
@@ -81,11 +82,11 @@
   \ori@document  % Begin document
   \printname % Print the name specified with \name
   \@ifundefined{@addressone}{}{ % Print the first address if specified
-    \printaddress{\@addressone}}
+  \printaddress{\@addressone}}
   \@ifundefined{@addresstwo}{}{ % Print the second address if specified
-    \printaddress{\@addresstwo}}
-     \@ifundefined{@addressthree}{}{ % Print the third address if specified
-    \printaddress{\@addressthree}}
+  \printaddress{\@addresstwo}}
+  \@ifundefined{@addressthree}{}{ % Print the third address if specified
+  \printaddress{\@addressthree}}
 }
 
 %----------------------------------------------------------------------------------------
@@ -99,10 +100,10 @@
   \sectionlineskip
   \hrule % Horizontal line
   \begin{list}{}{ % List for each individual item in the section
-    \setlength{\leftmargin}{1.5em} % Margin within the section
-  }
+      \setlength{\leftmargin}{1.5em} % Margin within the section
+    }
   \item[]
-}{
+  }{
   \end{list}
 }
 
@@ -111,13 +112,13 @@
 %----------------------------------------------------------------------------------------
 
 \newenvironment{rExperience}[4]{ % 4 input arguments - company name, year(s) employed, job title and location
- {\bf #1} \hfill {#2} % Bold company name and date on the right
- \ifthenelse{\equal{#3}{}}{}{ % If the third argument is not specified, don't print the job title and location line
-  \\
-  {\em #3} \hfill {\em #4} % Italic job title and location
+  {\bf #1} \hfill {#2} % Bold company name and date on the right
+  \ifthenelse{\equal{#3}{}}{}{ % If the third argument is not specified, don't print the job title and location line
+    \\
+    {\em #3} \hfill {\em #4} % Italic job title and location
   }\smallskip
   \begin{list}{$\cdot$}{\leftmargin=0em} % \cdot used for bullets, no indentation
-   \itemsep -0.5em \vspace{-0.5em} % Compress items in list together for aesthetics
+  \itemsep -0.5em \vspace{-0.5em} % Compress items in list together for aesthetics
   }{
   \end{list}
   \vspace{0.5em} % Some space after the list of bullet points
@@ -128,11 +129,11 @@
 %----------------------------------------------------------------------------------------
 
 \newenvironment{rUniversity}[3]{ % 3 input arguments - University name, year(s) attended, degree title
- {\bf #1} \hfill {#2} % Bold university name and years on the right
+  {\bf #1} \hfill {#2} % Bold university name and years on the right
   \\
   {\em #3} % Italic degree title
   \begin{list}{$\cdot$}{\leftmargin=0em} % \cdot used for bullets, no indentation
-   \itemsep -0.5em \vspace{-0.5em} % Compress items in list together for aesthetics
+  \itemsep -0.5em \vspace{-0.5em} % Compress items in list together for aesthetics
   }{
   \end{list}
   \vspace{0.5em} % Some space after the list of bullet points
