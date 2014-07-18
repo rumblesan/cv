@@ -25,6 +25,9 @@
 
 \documentclass{resume} % Use the custom resume.cls style
 
+\ifdefined\iswebpage{}
+  \usepackage[html]{tex4ht}
+\fi
 \usepackage[left=0.75in,top=0.6in,right=0.75in,bottom=0.6in]{geometry} % Document margins
 \usepackage{hyperref}
 
