@@ -1,5 +1,8 @@
 # CV
 
-This is my CV, written in latex.
+My CV, written in latex.
 
-Still plenty of tweaking to do.
+## Build
+
+`pdflatex cv.tex`
+
