@@ -1,162 +1,276 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Medium Length Professional CV
-% LaTeX Template
-% Version 2.0 (8/5/13)
-%
-% This template has been downloaded from:
-% http://www.LaTeXTemplates.com
-%
-% Original author:
-% Trey Hunner (http://www.treyhunner.com/)
-%
-% Modified by:
-% Guy John (http://rumblesan.com)
-%
-% Important note:
-% This template requires the resume.cls file to be in the same directory as the
-% .tex file. The resume.cls file provides the resume style used for structuring the
-% document.
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%-------------------------------------
+% Based on the LaTeX Resume for Software Engineers
+% Author : Leslie Cheng
+% Modified : Guy John
+% License : MIT
+%-------------------------------------
 
-%----------------------------------------------------------------------------------------
-%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
-%----------------------------------------------------------------------------------------
+\documentclass[letterpaper,12pt]{article}[leftmargin=*]
 
-\documentclass{resume} % Use the custom resume.cls style
-
-\ifdefined\iswebpage{}
-  \usepackage[html]{tex4ht}
+\usepackage[empty]{fullpage}
+\usepackage{enumitem}
+\usepackage{ifxetex}
+\ifxetex
+  \usepackage{fontspec}
+  \usepackage[xetex]{hyperref}
+\else
+  \usepackage[utf8]{inputenc}
+  \usepackage[T1]{fontenc}
+  \usepackage[pdftex]{hyperref}
 \fi
-\usepackage[left=0.75in,top=0.6in,right=0.75in,bottom=0.6in]{geometry} % Document margins
-\usepackage{hyperref}
+\usepackage{fontawesome}
+\usepackage[sfdefault,light]{FiraSans}
+\usepackage{anyfontsize}
+\usepackage{xcolor}
+\usepackage{tabularx}
 
-\name{Guy John}
-\address{07531 668965 \\ guy@peaklambda.com}
+%-------------------------------------------------- SETTINGS HERE --------------------------------------------------
+% Header settings
+\def \fullname {David Guy John}
+\def \subtitle {}
+
+\def \phoneicon {\faPhone}
+\def \phonetext {07531 668 965}
+
+\def \emailicon {\faEnvelope}
+\def \emaillink {mailto:guy@peaklambda.com}
+\def \emailtext {guy@peaklambda.com}
+
+\def \githubicon {\faGithub}
+\def \githublink {https://github.com/rumblesan}
+\def \githubtext {/rumblesan}
+
+\def \websiteicon {\faGlobe}
+\def \websitelink {https://rumblesan.com/}
+\def \websitetext {rumblesan.com}
+
+% Misc settings
+\def \entryspacing {-0pt}
+
+\def \bulletstyle {\faAngleRight}
+
+% Define colours
+\definecolor{primary}{HTML}{000000}
+\definecolor{secondary}{HTML}{0D47A1}
+\definecolor{accent}{HTML}{263238}
+\definecolor{links}{HTML}{1565C0}
+
+%-------------------------------------------------------------------------------------------------------------------
+
+% Defines to make listing easier
+\def \phone {\phoneicon \hspace{3pt}{ \phonetext}}
+\def \email {\emailicon \hspace{3pt}\href{\emaillink}{\emailtext}}
+\def \github {\githubicon \hspace{3pt}\href{\githublink}{\githubtext}}
+\def \website {\websiteicon \hspace{3pt}\href{\websitelink}{\websitetext}}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.55in}
+\addtolength{\evensidemargin}{-0.55in}
+\addtolength{\textwidth}{1.1in}
+\addtolength{\topmargin}{-0.6in}
+\addtolength{\textheight}{1.1in}
+
+% Define the link colours
+\hypersetup{colorlinks=true, urlcolor=links}
+
+% Set the margin alignment
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+\renewcommand{\section}[2]{\vspace{5pt}
+  \colorbox{secondary}{\color{white}\raggedbottom\normalsize{#1}{\hspace{7pt}\textbf{#2}}}
+}
+
+\newenvironment{resumeEntry}[0]{
+  \begin{itemize}[leftmargin=2.5mm]
+  }{
+  \end{itemize}\vspace{\entryspacing}
+}
+
+\newenvironment{resumeItemList}[0]{
+  \begin{itemize}[leftmargin=4.5mm]
+  }{
+  \end{itemize}
+}
+
+% Resume item
+\renewcommand{\labelitemii}{\bulletstyle}
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+% Entry with title, subheading, date(s), and location
+\newcommand{\resumeEntryTSDL}[4]{
+  \vspace{-1pt}\item[]
+    \begin{tabularx}{0.97\textwidth}{X@{\hspace{60pt}}r}
+      \textbf{\color{primary}#1} & {\firabook\color{accent}\small#2} \\
+      \textit{\color{accent}\small#3} & \textit{\color{accent}\small#4} \\
+    \end{tabularx}\vspace{-6pt}
+}
+
+% Entry with title and date(s)
+\newcommand{\resumeEntryTD}[2]{
+  \vspace{-1pt}\item[]
+    \begin{tabularx}{0.97\textwidth}{X@{\hspace{60pt}}r}
+      \textbf{\color{primary}#1} & {\firabook\color{accent}\small#2} \\
+    \end{tabularx}\vspace{-6pt}
+}
+
+\newcommand{\cvHeader}[4]{
+  \begin{tabularx}{\textwidth}{Xr}
+    {
+      \begin{tabular}{l}
+        \fontsize{35}{45}\selectfont{\color{primary}{{\textbf{\fullname}}}} \\
+        {\textit{\subtitle}}
+      \end{tabular}
+    } & {
+      \begin{tabular}{l@{\hspace{1.5em}}l}
+        {\small#1} & {\small#3} \\
+        {\small#2} & {\small#4}
+      \end{tabular}
+    }
+  \end{tabularx}
+}
+
 
 \begin{document}
+%--------------------------------- BEGIN HERE ------------------------------------
 
-%----------------------------------------------------------------------------------------
-%	WORK EXPERIENCE SECTION
-%----------------------------------------------------------------------------------------
+%----------------------------------- HEADER --------------------------------------
 
-\begin{rSection}{Experience}
+\cvHeader{\email}{\phone}{\website}{\github} % Set the order of items here
+\vspace{-10pt} % Set a negative value to push the body up, and the opposite
 
-  \begin{rExperience}{Red Badger}{March 2019 to October 2018}{Contract Senior Software Engineer}{London}
-  \item Building Operational team dashboards and production readiness work on a money transferring app.
-  \item Full-stack Typescript codebase running on Kubernetes, with a number of third party integrations.
-  \end{rExperience}
+%----------------------------------- INTRO ---------------------------------------
 
-  %------------------------------------------------
+\section{\faInfo}{Summary}
 
-  \begin{rExperience}{Echo}{January 2018 to June 2018 and October 2018 to February 2019}{Contract Senior Software Engineer}{London}
-  \item Primarily focussed on helping migrate a previous, mostly monolithic backend application onto a Kubernetes hosted, micro-services infrastructure.
-  \item Services were built in Go, utilizing gRPC, but with a small number of node.js services where suitable.
-  \end{rExperience}
+  \begin{resumeEntry}
+    \item[]{As an engineer, over the last few years I have found my interests shifting from being primarily focussed on the technical aspects of my role, toward a much more people oriented point of view. This has been as much about understanding how users interact with the tools and software I'm building, as it has improving how I work with other people on the projects I've been involved with.}
+    \item[]{I'd very much like to find a role that would allow me to continue building and developing systems that have an impact on real people, whilst also letting me use and improve the product and team-centric skills that I feel I've been developing in the last few years.}
+  \end{resumeEntry}
 
-  %------------------------------------------------
+%----------------------------------EXPERIENCE ------------------------------------
+\section{\faPieChart}{Experience}
 
-  \begin{rExperience}{Verisart}{September 2018 to October 2018}{Contract Senior Software Engineer}{London}
-  \item A short-term contract to ship supporting APIs for a new web frontend and partner integrations.
-  \item Large Go monolith running atop PostgreSQL, using OpenTimestamps for blockchain functionality.
-  \end{rExperience}
+  \begin{resumeEntry}
+    \resumeEntryTSDL{Red Badger}{September to December 2017 and March 2019 to April 2020}
+      {Contract Senior Software Engineer}{London}
+    \begin{resumeItemList}
+      \resumeItem{Working as part of an agency team on digital transformation projects for a high-street bank}
+      \resumeItem{Building operational dashboards and doing production readiness work on backend systems for a money transferring app.}
+      \resumeItem{Full-stack Typescript code base running on Kubernetes, with a React front-end}
+    \end{resumeItemList}
+  \end{resumeEntry}
 
-  %------------------------------------------------
+  \begin{resumeEntry}
+    \resumeEntryTSDL{Echo}{January to June 2018 and October 2018 to February 2019}
+      {Contract Senior Software Engineer}{London}
+    \begin{resumeItemList}
+      \resumeItem{Helped to migrate a mostly monolithic back-end application onto a Kubernetes hosted, micro-services infrastructure.}
+      \resumeItem{Services were built in Go, using gRPC, but with a small number of Node.js services where suitable.}
+    \end{resumeItemList}
+  \end{resumeEntry}
 
-  \begin{rExperience}{Red Badger}{September 2017 to December 2017}{Contract Senior Software Engineer}{London}
-  \item The aim of the project was to help a high-street bank migrate services onto their new cloud infrastructure as well as introduce new ways of working that would then feedback to the larger organisation.
-  \end{rExperience}
+  \begin{resumeEntry}
+    \resumeEntryTSDL{Verisart}{September 2018 to October 2018}
+      {Contract Senior Software Engineer}{London}
+    \begin{resumeItemList}
+      \resumeItem{A short-term contract to ship supporting APIs for a new web front-end and partner integrations.}
+      \resumeItem{Large Go monolith running atop PostgreSQL, using OpenTimestamps for block-chain integration.}
+    \end{resumeItemList}
+  \end{resumeEntry}
 
-  %------------------------------------------------
+  \begin{resumeEntry}
+    \resumeEntryTSDL{ustwo}{August 2015 to August 2017}{Senior Fullstack Developer}{London}
+    \begin{resumeItemList}
+      \resumeItem{The majority of the work was centred around product discovery in combination with user testing. The aim being to validate or disprove ideas as quickly as possible.}
+    \end{resumeItemList}
+  \end{resumeEntry}
 
-  \begin{rExperience}{ustwo}{August 2015 to August 2017}{Senior Fullstack Developer}{London}
-  \item ustwo is a digital agency that works with a range of clients, usually at the very early stages of projects.
-  \item A large proportion of the work was centred around product discovery in combination with user testing. The aim being to validate or disprove ideas as quickly as possible.
-  \end{rExperience}
+  \begin{resumeEntry}
+    \resumeEntryTSDL{Pusher}{August 2014 to July 2015}
+      {Platform Engineer}{London}
+    \begin{resumeItemList}
+      \resumeItem{Worked to build a new distributed messaging bus in Haskell to replace the existing Redis implementation}
+    \end{resumeItemList}
+  \end{resumeEntry}
 
-  %------------------------------------------------
+  \begin{resumeEntry}
+    \resumeEntryTSDL{Mind Candy}{April 2012 to July 2014}{Tools Software Engineer}{London}
+    \begin{resumeItemList}
+      \resumeItem{A varied role involving building internal tools, maintaining C.I. systems and supporting product teams.}
+      \resumeItem{Mix of Scala/Play Framework, Backbone/Angular and Python with PostgreSQL}
+    \end{resumeItemList}
+  \end{resumeEntry}
 
-  \begin{rExperience}{Pusher}{August 2014 to July 2015}{Platform Engineer}{London}
-  \item Primarily involved in building a new distributed messaging bus for the Pusher software stack.
-  \item Very much a polyglot environment using mainly Haskell, Ruby and Javascript, but with many other languages used for client libraries and small tools.
-  \end{rExperience}
+  %\begin{resumeEntry}
+    %\resumeEntryTSDL{Fidessa Plc}{Jan 2009 to April 2012}{Operational Engineer}{Woking, Surrey}
+    %\begin{resumeItemList}
+      %\resumeItem{Part of a small support and development team, responsible for creating capacity planning and server management tools.}
+    %\end{resumeItemList}
+  %\end{resumeEntry}
 
-  %------------------------------------------------
+%-------------------------------------------------- TEACHING --------------------------------------------------
+\section{\faGraduationCap}{Teaching}
 
-  \begin{rExperience}{Mind Candy}{April 2012 to July 2014}{Tools Software Engineer}{London}
-  \item A varied role involving building internal tools, maintaining C.I. systems, supporting product teams and making sure knowledge was shared.
-  \item Mix of Scala/Play Framework, Backbone/Angular and Python with PostgreSQL, Elastic Search and Cassandra databases.
-  \end{rExperience}
+  \begin{resumeEntry}
+    \resumeEntryTSDL{23 Code Street}{December 2018 to February 2020}{Teacher}{London}
+    \begin{resumeItemList}
+      \resumeItem{23 Code Street is a coding school run specifically for those who identify as female or non-binary, with the aim of helping under-represented people get into tech jobs.}
+      \resumeItem{I was responsible for helping create and then teach a new, more JavaScript focussed curriculum.}
+    \end{resumeItemList}
+  \end{resumeEntry}
 
-  %------------------------------------------------
+%----------------------------------EDUCATION -----------------------------------
+\section{\faUniversity}{Education}
 
-  \begin{rExperience}{Fidessa Plc}{Jan 2009 to April 2012}{Operational Engineer}{Woking, Surrey}
-  \item Part of a small support and development team, responsible for creating capacity planning and server management tools.
-  \end{rExperience}
+  \begin{resumeEntry}
+    \resumeEntryTSDL{University of Reading}{2005 to 2008}
+      {BEng Electronic Engineering 2.1}{}
+    \begin{resumeItemList}
+        \resumeItem{Programming was entirely C and C++ with an emphasis on embedded systems}
+        \resumeItem{Gained a solid grounding in DSP theory and engineering mathematics.}
+    \end{resumeItemList}
+  \end{resumeEntry}
 
-\end{rSection}
-
-\pagebreak
-
-%----------------------------------------------------------------------------------------
-%	EDUCATION SECTION
-%----------------------------------------------------------------------------------------
-
-\begin{rSection}{Education}
-
-  \begin{rUniversity}{University of Reading}{2005 to 2008}{BEng Electronic Engineering 2.1}
-  \item Learnt to program in C, C++ and some amount of assembler, primarily targeting embedded micro-controllers,
-  \item Also gained a solid grounding in DSP theory and engineering mathematics.
-  \end{rUniversity}
-
-  {\bf Eton College} \hfill {1999 to 2004} \\
-  \begin{tabular}{@{} >{\bfseries}l @{\hspace{6ex}} l }
-    A Levels & Physics, Maths and Further Maths \\
-    AS Levels & I.T. and Electronics \\
-    GCSEs & English, French, Latin, Chemistry, Physics, Biology, Maths, Electronics \\
-  \end{tabular}
-
-\end{rSection}
+  \begin{resumeEntry}
+    \resumeEntryTD{Eton College}{1999 to 2004}
+    \vspace{-1pt}\item[]
+      \begin{tabular}{l @{\hspace{6ex}} l }
+          A Levels & Physics, Maths and Further Maths \\
+          AS Levels & I.T. and Electronics \\
+          GCSEs & English, French, Latin, Chemistry, Physics, Biology, Maths, Electronics \\
+      \end{tabular}
+  \end{resumeEntry}
 
 
-%----------------------------------------------------------------------------------------
-%	TECHNICAL STRENGTHS SECTION
-%----------------------------------------------------------------------------------------
+%-------------------------------------------------- INTERESTS --------------------------------------------------
+\section{\faFlask}{Interests}
 
-\begin{rSection}{Technical Skills}
+  \begin{resumeEntry}
+    \item[]{My interest in software came initially from my interest in electronic hardware. Specifically building guitar effects and learning about synthesizers. At some point I realised that the speed of iteration with software is significantly quicker and so it became more of a focus for me.}
+    \item[]{I regularly do visual performances as part of the live-coding scene and build tools, environments and languages to help me do that.}
+    \item[]{Outside of coding and art, I'm a keen rock climber, having now spent a significant amount of time climbing in the U.K. and beyond. My decision to relocate to Bristol was mainly down to wanting to be in a better location, so I can spend more time falling off cliffs.}
+    \item[]{Public speaking is something I enjoy and am always looking for opportunities to do more, whether that be in a technical capacity or otherwise. I've previously presented on subjects ranging from software tool development to language design for live coding environments.}
+  \end{resumeEntry}
 
-  \begin{tabular}{@{} >{\bfseries}l @{\hspace{6ex}} l }
-    Languages & Haskell, Go, Scala, Python, Javascript, Bash, C \\
-    Frameworks & Play, React, Express, Flask, Django, Lile \\
-    Databases & MySQL, PostgreSQL \\
-    Tools & Git, SVN, Docker, Puppet, General *nix sysadmin \\
-    Infrastructure & AWS, Google Cloud, Kubernetes \\
-    Management & Agile Development Practices, DevOps, Continuous Integration and Delivery
-  \end{tabular}
+%-------------------------------------------------- PROGRAMMING SKILLS --------------------------------------------------
+\section{\faGears}{Technical Skills}
 
-\end{rSection}
-
-%----------------------------------------------------------------------------------------
-%	INTERESTS SECTION
-%----------------------------------------------------------------------------------------
-
-\begin{rSection}{Interests}
-
-  I'm heavily interested in the cross over of code with art and music, and have created or been involved with a number of projects along these lines. I am one half of LiveCodeLab, a duo doing live coded audio visual performances at venues ranging from boat and warehouse parties to the London Science Museum. At the end of 2013 I was involved with an installation in the Puerto Rico Museum of Art, writing the software for a computer controlled, reconstructed piano as part of the Lexus with the Arts program. I also produce music and play guitar, though primarily for my own pleasure.
-
-  Outside of coding and art, I'm a keen rock climber, having now spent a significant amount of time climbing outside around the U.K. My decision to start contracting was mainly down to wanting more flexibility in how I work so I can spend more time falling off cliffs.
-
-  Public speaking is something I enjoy and am always looking for opportunities to do more, whether that be in a technical capacity or otherwise. I've previously presented on subjects ranging from software tool development to language design for live coding environments.
-
-\end{rSection}
-
-\begin{rSection}{Links}
-
-  A number of my projects, experiments and papers can be found on my website at \url{http://rumblesan.com/}
-
-  My github account can be found at \url{http://github.com/rumblesan/}
-
-\end{rSection}
-%----------------------------------------------------------------------------------------
+  \begin{resumeEntry}
+    \vspace{-1pt}\item[]
+      \begin{tabular}{l @{\hspace{6ex}} l }
+          Languages & JavaScript, TypeScript, Go, Haskell, Scala, Python, C \\
+          Frameworks & React, Express, Flask, Django, Lile, Play \\
+          Databases & PostgreSQL, MySQL \\
+          Tools & Git, Docker, Terraform, General *nix sysadmin \\
+          Infrastructure & Google Cloud, AWS, Kubernetes \\
+          Management & Agile Development Practices, DevOps, Continuous Integration and Delivery
+      \end{tabular}
+  \end{resumeEntry}
 
 \end{document}
